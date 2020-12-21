@@ -4,7 +4,7 @@
   <div class="row" style="margin-right: 0">
   <div class="col"  >
     <div class="logo-image" style="min-width:46px;min-height:46px; width: 6rem;height: 6rem;margin-right: 0">
-      <img src="{{fs.user_photoURL}}" >
+      <img src="{{user_photoURL}}" >
     </div>
   </div>
   <div class="col-9">
@@ -13,10 +13,10 @@
     </thead>
     <tbody>
     <tr>
-      <td> <strong>Name:</strong> {{fs.user_name}}</td>
+      <td> <strong>Name:</strong> {{user_name}}</td>
     </tr>
     <tr>
-      <td> <strong>Email:</strong> {{fs.user_email}}</td>
+      <td> <strong>Email:</strong> {{user_email}}</td>
     </tr>
     </tbody>
   </table>
@@ -25,7 +25,7 @@
 </div>
 <br>
 <h2>My Recipes:</h2>
-<div id="my-recipes">
+<div id="my-recipes" class="container">
   <ul class="list-group" *ngIf="myRecipes">
     <li class="list-group-item" *ngFor="let recipe of myRecipes">
       <a [routerLink]="['/recipe/'+recipe.id]">{{recipe.title}}</a>

@@ -17,7 +17,6 @@ export class AppComponent {
         .subscribe(
           user => {
             if (user) {
-              this.fs.getUserInfo();
               console.log('User Found');
               console.log(user.email);
             } else {

@@ -16,11 +16,16 @@ export class AddRecipeComponent implements OnInit {
   owner: any;
   level_of_difficulty: any;
   video_link: any;
+  name: any;
 
   constructor(private fs: FirebaseService, private router: Router) { }
 
   ngOnInit(): void {
-    this.owner = this.fs.uid;
+    var testAppUser = localStorage.getItem('my-test-app-currentUser');
+    if(testAppUser){
+      this.owner = JSON.parse(testAppUser)["uid"];
+      this.name = JSON.parse(testAppUser)["displayName"];
+    }
   }
 
   onAddsubmit(){

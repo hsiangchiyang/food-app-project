@@ -10,10 +10,15 @@ import * as firebase from 'firebase';
 })
 export class NavbarComponent implements OnInit {
 
+  user_photoURL: any;
+
   constructor( public fs: FirebaseService, private router: Router) { }
 
   ngOnInit(): void {
-
+    var testAppUser = localStorage.getItem('my-test-app-currentUser');
+    if (testAppUser){
+      this.user_photoURL = JSON.parse(testAppUser)['photoURL'];
+    }
   }
   login(){
     this.fs.login();

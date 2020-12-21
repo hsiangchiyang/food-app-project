@@ -14,28 +14,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { ListingsComponent } from './components/listings/listings.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ListingComponent } from './components/listing/listing.component';
-import { AddListingComponent } from './components/add-listing/add-listing.component';
-import { EditListingComponent } from './components/edit-listing/edit-listing.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 import { EditRecipeComponent } from './components/edit-recipe/edit-recipe.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserPageComponent } from './components/user-page/user-page.component';
+import { AuthGuard} from './guards/auth.guard';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ListingsComponent,
     NavbarComponent,
-    ListingComponent,
-    AddListingComponent,
-    EditListingComponent,
     RecipesComponent,
     RecipeComponent,
     AddRecipeComponent,
@@ -55,7 +48,7 @@ import { UserPageComponent } from './components/user-page/user-page.component';
     YouTubePlayerModule,
     HttpClientModule
   ],
-  providers: [FirebaseService, FlashMessagesService],
+  providers: [FirebaseService, FlashMessagesService,  AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
