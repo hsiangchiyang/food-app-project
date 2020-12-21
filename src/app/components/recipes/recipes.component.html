@@ -1,0 +1,5 @@
+<ul class="list-group" *ngIf="recipes">
+  <li class="list-group-item" *ngFor="let recipe of recipes">
+    <a [routerLink]="['/recipe/'+recipe.id]">{{recipe.title}}</a>
+  </li>
+</ul>

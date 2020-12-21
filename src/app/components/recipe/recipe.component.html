@@ -1,0 +1,45 @@
+<br>
+<div>
+  <a [routerLink]="['/recipes']" class="btn btn-outline-info">Go Back</a>
+</div>
+<br>
+<h2 *ngIf="recipe" class="page-header">
+  <i *ngIf="recipe.type == 'Meal'" class="fas fa-drumstick-bite" style="font-size: 5rem;"></i>
+  <i *ngIf="recipe.type == 'Snack'" class="fas fa-cookie" style="font-size: 5rem;"></i>
+  <i *ngIf="recipe.type == 'Drink'" class="fas fa-cocktail" style="font-size: 5rem;"></i>
+  {{recipe.title}}
+</h2>
+<br>
+<iframe id="video" width="560" height="315"
+        src="" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+></iframe>
+<br>
+<br>
+<div *ngIf="recipe" class="row">
+<!--  <div class="col-md-4">-->
+<!--    <img style="width: 100%" class="thumbnail" src="{{imageUrl}}">-->
+
+<!--  </div>-->
+  <div class="col-md-8">
+    <ul>
+      <li class="list-group-item"> <strong>Owner:</strong> {{recipe.owner}}</li>
+      <li class="list-group-item"> <strong>Type:</strong> {{recipe.type}}</li>
+      <li class="list-group-item"> <strong>Time:</strong> {{recipe.time}}</li>
+      <li class="list-group-item"> <strong>Video:</strong> {{recipe.video_link}}</li>
+      <li class="list-group-item"> <strong>Ingredients:</strong> {{recipe.ingredient}}</li>
+    </ul>
+  </div>
+  <br>
+  <div class="col-md-8">
+    <a class="btn btn-default btn-light" [routerLink]="['/edit-recipe/'+id]">Edit</a>
+    <a class="btn  btn-outline-danger" (click)="open('focusFirst')" >Delete</a>
+  </div>
+</div>
+<br>
+
+<p></p>
+
+
+
+
