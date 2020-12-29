@@ -1,4 +1,4 @@
-<a [routerLink]="['/recipes']">Back</a>
+<!--<a [routerLink]="['/recipes']">Back</a>-->
 <br>
 <h2 class="page-header">Add Recipe</h2>
 <form (submit)="onAddsubmit()">
@@ -29,16 +29,21 @@
   </div>
 
   <div class="form-group">
-    <label>Time</label>
+    <label>Estimated Time to Cook</label>
     <input class="form-control" [(ngModel)]="time"  type="text" name="time">
   </div>
 
   <div class="form-group">
     <label>Ingredients</label>
-    <input class="form-control" [(ngModel)]="ingredient"  type="text" name="ingredient">
+    <textarea class="form-control" type="text" name="ingredient" style="white-space: pre-wrap;" [(ngModel)]="ingredient" rows="3"></textarea>
+<!--    <input class="form-control" [(ngModel)]="ingredient"  type="text" name="ingredient">-->
   </div>
 
-
+  <div class="form-group">
+    <label>Instructions</label>
+    <textarea class="form-control" type="text" name="instructions" style="white-space: pre-wrap;" [(ngModel)]="instructions" rows="3"></textarea>
+    <!--    <input class="form-control" [(ngModel)]="ingredient"  type="text" name="ingredient">-->
+  </div>
 
 <!--  <div class="form-group">-->
 <!--    <label >Example file input</label>-->
@@ -46,8 +51,8 @@
 <!--  </div>-->
 
   <div class="form-group">
-    <label>Youtube Video</label>
-    <input class="form-control" [(ngModel)]="video_link"  type="text" name="video_link">
+    <label>Relative Youtube Video</label> &nbsp; <input type="checkbox" name="video_check" [(ngModel)]="has_link">
+    <input *ngIf="has_link" class="form-control" [(ngModel)]="video_link"  type="text" name="video_link">
   </div>
   <input type="submit" value="submit" class="btn btn-success">
 </form>

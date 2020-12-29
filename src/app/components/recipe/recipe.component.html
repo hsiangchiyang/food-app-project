@@ -10,33 +10,51 @@
   {{recipe.title}}
 </h2>
 <br>
-<iframe id="video" width="560" height="315"
-        src="" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
-></iframe>
-<br>
-<br>
-<div *ngIf="recipe" class="row">
-<!--  <div class="col-md-4">-->
-<!--    <img style="width: 100%" class="thumbnail" src="{{imageUrl}}">-->
 
-<!--  </div>-->
-  <div class="col-md-8">
-    <ul>
-      <li class="list-group-item"> <strong>Owner:</strong> {{recipe.owner}}</li>
-      <li class="list-group-item"> <strong>Type:</strong> {{recipe.type}}</li>
-      <li class="list-group-item"> <strong>Time:</strong> {{recipe.time}}</li>
-      <li class="list-group-item"> <strong>Video:</strong> {{recipe.video_link}}</li>
-      <li class="list-group-item"> <strong>Ingredients:</strong> {{recipe.ingredient}}</li>
-    </ul>
-  </div>
-  <br>
-  <div class="col-md-8">
+<iframe  id="video" width="0" height="0"
+          src="" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+></iframe>
+
+<br>
+
+
+<div *ngIf="recipe" class="row">
+<table class="table table-striped">
+  <thead>
+  </thead>
+  <tbody>
+  <tr >
+    <td><strong>Owner:</strong></td>
+    <td>{{recipe.owner_name}}</td>
+  </tr>
+  <tr >
+    <td><strong>Type:</strong></td>
+    <td>{{recipe.type}}</td>
+  </tr>
+  <tr >
+    <td><strong>Estimated Time to Cook:</strong></td>
+    <td>{{recipe.time}}</td>
+  </tr>
+  <tr *ngIf="recipe.video_link != ''">
+    <td><strong>Relative Video Link:</strong></td>
+    <td>{{recipe.video_link}}</td>
+  </tr>
+  <tr >
+    <td><strong>Ingredients:</strong></td>
+    <td style="white-space: pre-wrap">{{recipe.ingredient}}</td>
+  </tr>
+  <tr >
+    <td><strong>Instructions:</strong></td>
+    <td style="white-space: pre-wrap">{{recipe.instructions}}</td>
+  </tr>
+  </tbody>
+</table>
+  <div *ngIf="recipe.owner == fs.user_json['uid']" class="col-md-8">
     <a class="btn btn-default btn-light" [routerLink]="['/edit-recipe/'+id]">Edit</a>
     <a class="btn  btn-outline-danger" (click)="open('focusFirst')" >Delete</a>
   </div>
 </div>
-<br>
 
 <p></p>
 

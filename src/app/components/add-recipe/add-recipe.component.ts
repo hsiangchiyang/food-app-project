@@ -9,14 +9,16 @@ import {Router} from '@angular/router';
 })
 export class AddRecipeComponent implements OnInit {
 
-  title: any;
+  title: string = '';
   type: any;
-  time: any;
-  ingredient: any;
+  time: string = '';
+  ingredient: string = '';
   owner: any;
   level_of_difficulty: any;
-  video_link: any;
+  video_link: string = '';
   name: any;
+  instructions: string = '';
+  has_link : boolean = false;
 
   constructor(private fs: FirebaseService, private router: Router) { }
 
@@ -33,10 +35,12 @@ export class AddRecipeComponent implements OnInit {
       title: this.title,
       ingredient: this.ingredient,
       owner: this.owner,
+      owner_name: this.name,
       type: this.type,
       time: this.time,
       level_of_difficulty: this.level_of_difficulty,
-      video_link: this.video_link
+      video_link: this.video_link,
+      instructions: this.instructions,
     };
     this.fs.addRecipe(recipe);
     this.router.navigate(['recipes']);

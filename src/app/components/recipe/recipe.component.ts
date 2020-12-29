@@ -47,8 +47,9 @@ export class RecipeComponent implements OnInit {
   recipe: any;
   url:any;
   cur_user:any;
+  owner_name: any;
 
-  constructor(private fs: FirebaseService, private router: Router, private route: ActivatedRoute, private _modalService: NgbModal) { }
+  constructor(public fs: FirebaseService, private router: Router, private route: ActivatedRoute, private _modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -56,7 +57,12 @@ export class RecipeComponent implements OnInit {
       this.recipe = recipe ;
       this.url = this.recipe.video_link;
       const tag = document.getElementById('video');
-      tag.setAttribute('src' , this.url.replace("watch?v=", "embed/"));
+      if (recipe.video_link != ''){
+        tag.setAttribute('src' , this.url.replace("watch?v=", "embed/"));
+        tag.setAttribute('width' , "560");
+        tag.setAttribute('height' , "315");
+
+      }
       console.log(recipe);
     });
   }
@@ -79,4 +85,5 @@ export class RecipeComponent implements OnInit {
       }
     );
   }
+
 }

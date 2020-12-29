@@ -17,6 +17,9 @@ export class EditRecipeComponent implements OnInit {
   owner: any;
   level_of_difficulty: any;
   video_link: any;
+  instructions: any;
+  owner_name: any;
+  has_link: boolean = false;
 
   constructor(private fs: FirebaseService, private router: Router, private route: ActivatedRoute) {
 
@@ -32,6 +35,11 @@ export class EditRecipeComponent implements OnInit {
       this.owner = recipe.owner;
       this.level_of_difficulty = recipe.level_of_difficulty;
       this.video_link = recipe.video_link;
+      this.instructions = recipe.instructions;
+      this.owner_name = recipe.owner_name;
+      if(recipe.video_link != ''){
+        this.has_link = true;
+      }
     });
   }
 
@@ -42,8 +50,10 @@ export class EditRecipeComponent implements OnInit {
       time: this.time,
       ingredient: this.ingredient,
       owner: this.owner,
+      owner_name: this.owner_name,
       level_of_difficulty: this.level_of_difficulty,
-      video_link: this.video_link
+      video_link: this.video_link,
+      instructions: this.instructions
     };
     this.fs.updateRecipe(this.id, recipe);
     this.router.navigate(['/recipes']);

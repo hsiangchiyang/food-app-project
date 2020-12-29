@@ -33,7 +33,7 @@
       <li *ngIf="(fs.user | async)"  style="margin-right: 0">
         <div class="logo-image">
 <!--        <span class="text-white-50" style="margin-right: auto">Hi, </span>-->
-          <img src="{{user_photoURL}}" style=" width: 100%;margin-right: 0">
+          <img src="{{fs.user_json['photoURL']}}" style=" width: 100%;margin-right: 0">
         </div>
     </ul>
 

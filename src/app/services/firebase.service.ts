@@ -15,10 +15,7 @@ export class FirebaseService {
   myrecipes: Observable<any>;
   recipe: Observable<any>;
   user: Observable<any>;
-  // uid: any;
-  // user_email: any;
-  // user_photoURL: any;
-  // user_name: any;
+  user_json: any;
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth, private flashMessage: FlashMessagesService) {
     // this.listings = db.collection('listings').valueChanges();
@@ -27,17 +24,36 @@ export class FirebaseService {
       if (user) {
         localStorage.setItem('my-test-app-currentUser', JSON.stringify(user));
         localStorage.setItem('isLoggedIn','true');
+        var user_json = JSON.parse(JSON.stringify(user));
+        this.user_json = user_json;
       } else {
         localStorage.setItem('my-test-app-currentUser', null);
       }
     });
     this.user = afAuth.authState;
   }
+
   login(){
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(
       (result) => {
         localStorage.setItem('my-test-app-currentUser', JSON.stringify(result));
         localStorage.setItem('isLoggedIn','true');
+        var user_json = JSON.parse(JSON.stringify(result))['user'];
+        this.user_json = user_json;
+
+        // Check for First Time User
+        var hasUser = this.getUserinfo(user_json['uid']);
+        console.log(hasUser);
+        if (hasUser == null){
+          let User = {
+            name: user_json['displayName'],
+            email: user_json['email'],
+            friends: [],
+            owned: [],
+            favorite: []
+          };
+          this.db.collection("users").doc(user_json['uid']).ref.set(User);
+        }
       }
     ).catch(function(error) {
       // Handle Errors here.
@@ -48,26 +64,32 @@ export class FirebaseService {
   logout(){
     this.afAuth.auth.signOut();
     localStorage.setItem('isLoggedIn','false');
-    localStorage.removeItem('token');
+    localStorage.setItem('my-test-app-currentUser', null);
     this.flashMessage.show(
       'You are logged out',
       {cssClass: 'alert-success', timeout: 3000}
     );
   }
-  // getUserInfo(){
-  //   this.user.subscribe(res => { if (res && res.uid){
-  //     this.uid = res.uid;
-  //   } }
-  //   );
-  //   var user = firebase.auth().currentUser;
-  //   if (user != null) {
-  //       this.uid = user.uid;
-  //       this.user_email = user.email;
-  //       this.user_photoURL = user.photoURL;
-  //       this.user_name = user.displayName;
-  //   }
-  //   return this.uid;
-  // }
+
+  getUserinfo(id){
+    this.db.collection("users").doc(id).ref.get().then(
+      function(doc) {
+        if( doc.exists){
+          console.log("Document data:", doc.data());
+          return doc.data();
+        }else{
+          console.log("No such document!");
+          return null;
+        }
+      }
+    ).catch(function(error) {
+      console.log("Error getting document:", error);
+    });
+  }
+
+  UpdateUserinfo(id, user_info){
+    this.db.collection('users').doc(id).set(user_info);
+  }
 
   // Recipe Reference
   getAllrecipes(){
@@ -90,9 +112,10 @@ export class FirebaseService {
   updateRecipe( recipe_id, new_recipe){
     return this.db.collection('recipes').doc(recipe_id).update(new_recipe);
   }
-  deleteRecipe( recipe_id){
+  deleteRecipe(recipe_id){
     return this.db.collection('recipes').doc(recipe_id).delete();
   }
+
 }
 
 interface Recipe {
