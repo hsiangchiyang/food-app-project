@@ -1,51 +1,39 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Make Me Cook</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar  navbar-dark bg-dark" >
+  <a class="navbar-brand" href="#">Help Me Cook</a>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto navbar-left">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/']">Home</a>
-      </li>
-<!--      <li *ngIf="(fs.user | async)" class="nav-item">-->
-<!--        <a class="nav-link" [routerLink]="['/listings']" >Listings</a>-->
-<!--      </li>-->
-<!--      <li *ngIf="(fs.user | async)" class="nav-item">-->
-<!--        <a class="nav-link" [routerLink]="['/add-listing']" >Add Listing</a>-->
-<!--      </li>-->
-
-      <li *ngIf="(fs.user | async)" class="nav-item">
-        <a class="nav-link" [routerLink]="['/recipes']" >All Recipes</a>
-      </li>
-      <li *ngIf="(fs.user | async)" class="nav-item">
-        <a class="nav-link" [routerLink]="['/add-recipe']" >Add Recipe</a>
-      </li>
-      <li *ngIf="(fs.user | async)" class="nav-item">
-        <a class="nav-link" [routerLink]="['/my-page']" >My Page</a>
-      </li>
-
-
-    </ul>
-
-    <ul class="navbar-nav" >
-      <li *ngIf="(fs.user | async)"  style="margin-right: 0">
-        <div class="logo-image">
-<!--        <span class="text-white-50" style="margin-right: auto">Hi, </span>-->
-          <img src="{{fs.user_json['photoURL']}}" style=" width: 100%;margin-right: 0">
-        </div>
-    </ul>
-
-    <ul class="navbar-nav  navbar-right">
+  <div class="loginout">
+    <ul class="navbar-nav  navbar-right" >
       <li *ngIf="!(fs.user | async)" class="nav-item">
         <a class="nav-link"  (click)="login()" >Login</a>
     </ul>
-    <ul class="navbar-nav  navbar-right">
-      <li *ngIf="(fs.user | async)" class="nav-item">
-        <a class="nav-link"  (click)="logout()">Logout</a>
-    </ul>
 
+    <ul class="navbar-nav  navbar-right" >
+      <li *ngIf="(fs.user | async)" class="nav-item">
+        <div class="logo-image">
+          <img src="{{fs.user_json['photoURL']}}" style=" width: 100%;margin-right: 0">
+        </div>
+        &nbsp;
+        <a class="nav-link"  style="float: right" (click)="logout()">Logout</a>
+    </ul>
   </div>
+  <br>
+</nav>
+<nav>
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/']">Home</a>
+    </li>
+    <li *ngIf="(fs.user | async)" class="nav-item">
+      <a class="nav-link" [routerLink]="['/recipes']" >All Recipes</a>
+    </li>
+    <li *ngIf="(fs.user | async)" class="nav-item">
+      <a class="nav-link" [routerLink]="['/add-recipe']" >Add Recipe</a>
+    </li>
+    <li *ngIf="(fs.user | async)" class="nav-item">
+      <a class="nav-link" [routerLink]="['/my-page']" >My Page</a>
+    </li>
+
+  </ul>
 </nav>
 

@@ -1,5 +1,51 @@
-<ul class="list-group" *ngIf="recipes">
-  <li class="list-group-item" *ngFor="let recipe of recipes">
-    <a [routerLink]="['/recipe/'+recipe.id]">{{recipe.title}}</a>
-  </li>
-</ul>
+<div class="row">
+  <div class="col">
+    <input [(ngModel)]="search_name" class="form-control mr-sm-2" type="text" placeholder="Search">
+  </div>
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Food Type</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button (click)="search_type=[]" ngbDropdownItem>All</button>
+        <button (click)="Add_search_type('Meal')" ngbDropdownItem>Meal</button>
+        <button (click)="Add_search_type('Snack')" ngbDropdownItem>Snack</button>
+        <button (click)="Add_search_type('Drink')" ngbDropdownItem>Drink</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div>
+  <h2>
+    <div *ngIf="search_type.includes('Meal')" class="badge">
+    <span class="badge badge-secondary" style="background-color: orangered">
+      Meal </span> <i (click)="remove_search_type('Meal')" class="close fas fa-times"style="font-size: 1rem"></i>
+    </div>
+
+    <div *ngIf="search_type.includes('Snack')" class="badge">
+    <span class="badge badge-secondary" style="background-color: sandybrown">
+      Snack </span> <i (click)="remove_search_type('Snack')" class="close fas fa-times"style="font-size: 1rem"></i>
+    </div>
+
+    <div *ngIf="search_type.includes('Drink')" class="badge">
+    <span class="badge badge-secondary" style="background-color: lightseagreen">
+      Drink </span> <i (click)="remove_search_type('Drink')" class="close fas fa-times"style="font-size: 1rem"></i>
+    </div>
+  </h2>
+
+  <div style="background-color: lightseagreen">
+    <ul class="list-group" *ngIf="recipes" style="overflow-y:scroll; max-height: 400px !important; border-style: outset">
+      <div *ngFor="let recipe of recipes">
+        <li *ngIf="valid_show(recipe)" class="list-group-item" >
+          <i *ngIf="recipe.type == 'Meal'" class="fas fa-drumstick-bite" style="font-size: 1rem; color: orangered"></i>
+          <i *ngIf="recipe.type == 'Snack'" class="fas fa-cookie" style="font-size: 1rem; color: sandybrown"></i>
+          <i *ngIf="recipe.type == 'Drink'" class="fas fa-cocktail" style="font-size: 1rem; color: lightseagreen"></i>&nbsp;
+          <a  [routerLink]="['/recipe/'+recipe.id]">{{recipe.title}}</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+
+  <br>
+</div>

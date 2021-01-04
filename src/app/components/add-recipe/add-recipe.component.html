@@ -1,4 +1,3 @@
-<!--<a [routerLink]="['/recipes']">Back</a>-->
 <br>
 <h2 class="page-header">Add Recipe</h2>
 <form (submit)="onAddsubmit()">
@@ -6,10 +5,12 @@
     <label>Title</label>
     <input class="form-control" [(ngModel)]="title"   type="text" name="title">
   </div>
+
   <div class="form-group">
     <label>Owner</label>
     <input class="form-control" [(ngModel)]="name"  type="text" name="owner" disabled>
   </div>
+
   <div class="form-group">
     <label>Level of Difficulty</label>
     <select class="form-control" [(ngModel)]="level_of_difficulty"  type="text" name="level_of_difficulty">
@@ -36,19 +37,12 @@
   <div class="form-group">
     <label>Ingredients</label>
     <textarea class="form-control" type="text" name="ingredient" style="white-space: pre-wrap;" [(ngModel)]="ingredient" rows="3"></textarea>
-<!--    <input class="form-control" [(ngModel)]="ingredient"  type="text" name="ingredient">-->
   </div>
 
   <div class="form-group">
     <label>Instructions</label>
     <textarea class="form-control" type="text" name="instructions" style="white-space: pre-wrap;" [(ngModel)]="instructions" rows="3"></textarea>
-    <!--    <input class="form-control" [(ngModel)]="ingredient"  type="text" name="ingredient">-->
   </div>
-
-<!--  <div class="form-group">-->
-<!--    <label >Example file input</label>-->
-<!--    <input type="file" class="form-control-file" id="image" name="image" [(ngModel)]="image" >-->
-<!--  </div>-->
 
   <div class="form-group">
     <label>Relative Youtube Video</label> &nbsp; <input type="checkbox" name="video_check" [(ngModel)]="has_link">

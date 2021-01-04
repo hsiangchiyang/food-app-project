@@ -3,7 +3,7 @@
 <div id="user-info" class="container" style="max-width: 80%; margin: 0">
   <div class="row" style="margin-right: 0">
   <div class="col"  >
-    <div class="logo-image" style="min-width:46px;min-height:46px; width: 6rem;height: 6rem;margin-right: 0">
+    <div class="logo-image" style="min-width:40px;min-height:40px; width: 6rem;height: 6rem;margin-right: 0">
       <img src="{{user_photoURL}}" >
     </div>
   </div>
@@ -24,15 +24,11 @@
 </div>
 </div>
 <br>
-<h2>User's Recipes:</h2>
-<div id="my-recipes" class="container">
-  <ul class="list-group" *ngIf="myRecipes">
-    <li class="list-group-item" *ngFor="let recipe of myRecipes">
-      <a [routerLink]="['/recipe/'+recipe.id]">{{recipe.title}}</a>
-    </li>
-  </ul>
-</div>
-
+<h2>My Own Recipes:</h2>
+<app-recipes [type]="'own'"></app-recipes>
+<br>
+<h2>My Favorite Recipes:</h2>
+<app-recipes [type]="'favor'"></app-recipes>
 
 
 

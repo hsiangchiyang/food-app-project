@@ -1,0 +1,9 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+handlers:
+  - url: /
+    static_files: food-app/index.html
+    upload: food-app/index.html
+  - url: /
+    static_dir: food-app/

@@ -10,7 +10,6 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
     if (this.isLoggedIn()) {
       return true;
     }
@@ -20,7 +19,7 @@ export class AuthGuard implements CanActivate {
 
   public isLoggedIn(): boolean {
     let status = false;
-    if (localStorage.getItem('isLoggedIn') == "true") {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
       status = true;
     }
     else {

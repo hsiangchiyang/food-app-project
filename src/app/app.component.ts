@@ -3,7 +3,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import {Router, ActivatedRoute} from '@angular/router';
 import {FirebaseService} from './services/firebase.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

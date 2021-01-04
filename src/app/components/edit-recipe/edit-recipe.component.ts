@@ -22,7 +22,6 @@ export class EditRecipeComponent implements OnInit {
   has_link: boolean = false;
 
   constructor(private fs: FirebaseService, private router: Router, private route: ActivatedRoute) {
-
   }
 
   ngOnInit(): void {
@@ -44,6 +43,7 @@ export class EditRecipeComponent implements OnInit {
   }
 
   onEditsubmit(){
+    //TODO: add new recipe interface
     let recipe = {
       title: this.title,
       type: this.type,

@@ -1,6 +1,13 @@
 <br>
-<div>
-  <a [routerLink]="['/recipes']" class="btn btn-outline-info">Go Back</a>
+<div *ngIf="recipe">
+<div *ngIf="recipe.owner == fs.user_json['uid']" class="col-md-8">
+  <a class="btn btn-default btn-light" [routerLink]="['/edit-recipe/'+id]">Edit</a>
+  <a class="btn  btn-outline-danger" (click)="open('focusFirst')" >Delete</a>
+</div>
+<div *ngIf="recipe.owner != fs.user_json['uid']" class="col-md-8">
+  <a *ngIf="!is_favor" class="btn btn-default btn-light" (click)="addToFavor()">Add To Favorite</a>
+  <a *ngIf="is_favor" class="btn  btn-outline-danger" (click)="removeFromFavor()" >Remove From Favorite</a>
+</div>
 </div>
 <br>
 <h2 *ngIf="recipe" class="page-header">
@@ -10,15 +17,11 @@
   {{recipe.title}}
 </h2>
 <br>
-
 <iframe  id="video" width="0" height="0"
           src="" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
 ></iframe>
-
 <br>
-
-
 <div *ngIf="recipe" class="row">
 <table class="table table-striped">
   <thead>
@@ -50,12 +53,7 @@
   </tr>
   </tbody>
 </table>
-  <div *ngIf="recipe.owner == fs.user_json['uid']" class="col-md-8">
-    <a class="btn btn-default btn-light" [routerLink]="['/edit-recipe/'+id]">Edit</a>
-    <a class="btn  btn-outline-danger" (click)="open('focusFirst')" >Delete</a>
-  </div>
 </div>
-
 <p></p>
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,7 +9,7 @@ import {FirebaseService} from '../../services/firebase.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor( private fs:FirebaseService) { }
+  constructor( public fs: FirebaseService) { }
 
   ngOnInit(): void {
   }

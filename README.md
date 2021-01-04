@@ -2,6 +2,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.2.
 
+###### Latest deploy
+
+https://foodshow.uc.r.appspot.com/
+
+###### Overall view
+- Created an easy way to manage and share cooking tips and video links 
+- Integrated with Firebase APIs to authenticate using Google Sign-In to simplify the login process
+
+![alt](./readimages/home.png)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

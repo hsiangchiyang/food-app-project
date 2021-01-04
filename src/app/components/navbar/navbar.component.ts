@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service';
 import {Router} from '@angular/router';
-import * as firebase from 'firebase';
+
 
 @Component({
   selector: 'app-navbar',
@@ -20,11 +20,29 @@ export class NavbarComponent implements OnInit {
       this.user_photoURL = JSON.parse(testAppUser)['photoURL'];
     }
   }
+
   login(){
     this.fs.login();
   }
+
   logout(){
     this.fs.logout();
     this.router.navigate(['']);
+  }
+
+  //TODO: Create new tabs layout
+  tabs = [1, 2, 3, 4, 5];
+  counter = this.tabs.length + 1;
+  active;
+
+  close(event: MouseEvent, toRemove: number) {
+    this.tabs = this.tabs.filter(id => id !== toRemove);
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+
+  add(event: MouseEvent) {
+    this.tabs.push(this.counter++);
+    event.preventDefault();
   }
 }

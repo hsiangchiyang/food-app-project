@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -31,6 +32,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   onAddsubmit(){
+    //TODO: add new recipe interface
     let recipe = {
       title: this.title,
       ingredient: this.ingredient,

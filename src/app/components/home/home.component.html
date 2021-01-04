@@ -1,7 +1,40 @@
 <div class="jumbotron text-center">
   <div class="container">
-    <h1>Make Me Cook</h1>
+    <h1 style="font-family: 'Droid Sans'">Welcome to <strong> Help Me Cook</strong></h1>
     <p>A Better and Easier Way to manage and share your favorite cooking videos!</p>
-    <a (click)="login()" ><img src="assets/images/google_sign_in.png"></a>
+    <i class="far fa-clipboard" style="font-size: 2rem"></i>
+    <i class="fab fa-youtube"  style="font-size: 2rem"></i>
+    <br>
+    <a *ngIf="!(fs.user | async)" (click)="login()" ><img src="assets/images/google_sign_in.png"></a>
+    <div *ngIf="(fs.user | async)">
+      <h3>You can check all recipes to view all the recipes currently available!</h3>
+      <h3>Also, you can view and manage your recipes on My Page!</h3>
+    </div>
   </div>
+</div>
+
+<div>
+<ngb-carousel class="carousel-home">
+  <ng-template ngbSlide>
+      <img class="carousel-image" src="assets/images/meal.png" alt="Random first slide" >
+    <div class="carousel-caption">
+      <h3>Meal</h3>
+      <p>How you prepare your favorite meals?</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+      <img class="carousel-image" src="assets/images/snack.png" alt="Random second slide" >
+    <div class="carousel-caption">
+      <h3>Snack</h3>
+      <p>How you get your delicious snacks?</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+      <img class="carousel-image" src="assets/images/drink.png" alt="Random third slide" >
+    <div class="carousel-caption">
+      <h3>Drink</h3>
+      <p>How you make your special drinks?</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
 </div>
